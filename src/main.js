@@ -40,16 +40,16 @@ const app = createApp(App)
 app.component('layout-header', Header)
 app.component('layout-sidebar', Sidebar)
 
+const auth = {
+    username: import.meta.env.VITE_AUTH_USERNAME,
+    password: import.meta.env.VITE_AUTH_PASS,
+}
+
 router.beforeEach(async (to, from, next) => {
   const isAuthenticated = localStorage.getItem('bukutulis_app_token')
   if(!isAuthenticated)
   {
-    const {data} = await api.post('/kowloon/oauth/token', {}, {
-        auth: {
-            username: 'cranberry',
-            password: 112233
-        }
-    })
+    const {data} = await api.post('/oauth/token', {}, {auth})
     const token = data.data.token
     localStorage.setItem('bukutulis_app_token', token)
   }

@@ -120,7 +120,7 @@ const submitForm = async (event) => {
   
   try {
     const formData = new FormData(event.target);
-    const response = await api.post('/kowloon/auth/login', formData);
+    const response = await api.post('/auth/login', formData);
     console.log('login:', response.data);
     messageSuccess.value = 'Login successful!';
   } catch (error) {

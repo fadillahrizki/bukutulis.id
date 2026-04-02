@@ -1,12 +1,11 @@
 import axios from 'axios'
 
 const token = localStorage.getItem('bukutulis_app_token')
+const apiUrl = import.meta.env.VITE_API_URL
 
 const api = axios.create({
-  baseURL: 'https://www.veonpos.com',
+  baseURL: apiUrl,
   headers: {
-    // 'Content-Type': 'application/json',
-    // Accept: 'application/json',
     Authorization: `Bearer ${token}`,
   },
 })
