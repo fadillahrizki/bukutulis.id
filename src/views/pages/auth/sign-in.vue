@@ -89,6 +89,9 @@
               </div>
             </form>
           </div>
+          <div class="login-img">
+            <img src="@/assets/img/authentication/login02.png" alt="img" style="object-fit: cover;">
+          </div>
         </div>
       </div>
     </div>
@@ -114,15 +117,10 @@ const messageFailed = ref('');
 const messageSuccess = ref('');
 
 const submitForm = async (event) => {
-  const formData = new FormData(event.target);
-  const username = formData.get('username');
-  const password = formData.get('password');
-
+  
   try {
-    const response = await api.post('login', {
-      username: username,
-      password: password
-    });
+    const formData = new FormData(event.target);
+    const response = await api.post('/kowloon/auth/login', formData);
     console.log('login:', response.data);
     messageSuccess.value = 'Login successful!';
   } catch (error) {

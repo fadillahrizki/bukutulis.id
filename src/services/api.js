@@ -1,13 +1,13 @@
 import axios from 'axios'
 
-const token = localStorage.getItem('token')
+const token = localStorage.getItem('bukutulis_app_token')
 
 const api = axios.create({
-  baseURL: 'https://www.veonpos.com/kowloon/auth/',
+  baseURL: 'https://www.veonpos.com',
   headers: {
-    'Content-Type': 'application/json',
-    Accept: 'application/json',
-    Authorization: token ? `Bearer ${token}` : '',
+    // 'Content-Type': 'application/json',
+    // Accept: 'application/json',
+    Authorization: `Bearer ${token}`,
   },
 })
 

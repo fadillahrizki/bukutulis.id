@@ -1,6 +1,7 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
+import api from '@/services/api'
 
 // CSS
 import '@/assets/css/bootstrap.min.css'
@@ -38,5 +39,27 @@ const app = createApp(App)
 /********* Layout component**********/
 app.component('layout-header', Header)
 app.component('layout-sidebar', Sidebar)
+
+router.beforeEach(async (to, from, next) => {
+  const isAuthenticated = localStorage.getItem('bukutulis_app_token')
+  if(!isAuthenticated)
+  {
+    const {data} = await api.post('/kowloon/oauth/token', {}, {
+        auth: {
+            username: 'cranberry',
+            password: 112233
+        }
+    })
+    const token = data.data.token
+    localStorage.setItem('bukutulis_app_token', token)
+  }
+  next()
+
+//   if (to.meta.requiresAuth && !isAuthenticated) {
+//     next('/login')
+//   } else {
+//     next()
+//   }
+})
 
 app.use(router).mount('#app')
