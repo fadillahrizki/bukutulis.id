@@ -2,9 +2,8 @@
 
   <div class="account-page">
 
-    <div id="global-loader">
-      <div class="whirly-loader"> </div>
-    </div>
+    <!-- loader here -->
+    <Loader />
 
     <!-- Main Wrapper -->
     <div class="main-wrapper">
@@ -14,10 +13,10 @@
             <form method="post" @submit.prevent="submitForm">
               <div class="login-userset">
                 <div class="login-logo logo-normal">
-                  <img src="@/assets/img/logo.png" alt="img">
+                  <img src="/assets/img/logo.png" alt="img">
                 </div>
                 <a href="index.html" class="login-logo logo-white">
-                  <img src="@/assets/img/logo-white.png" alt="">
+                  <img src="/assets/img/logo-white.png" alt="">
                 </a>
                 <div class="login-userheading">
                   <h3>Sign In</h3>
@@ -28,14 +27,14 @@
                 <div class="form-login mb-3">
                   <label class="form-label">Username</label>
                   <div class="form-addons">
-                    <input type="text" class="form- control" name="username">
-                    <img src="@/assets/img/icons/mail.svg" alt="img">
+                    <input type="text" class="form- control" name="username" placeholder="Contoh: johndoe" v-model="authData.username">
+                    <img src="/assets/img/icons/mail.svg" alt="img">
                   </div>
                 </div>
                 <div class="form-login mb-3">
                   <label class="form-label">Password</label>
                   <div class="pass-group">
-                    <input type="password" class="pass-input form-control" name="password">
+                    <input type="password" class="pass-input form-control" name="password" placeholder="*******" v-model="authData.password">
                     <span class="fas toggle-password fa-eye-slash"></span>
                   </div>
                 </div>
@@ -67,17 +66,17 @@
                   <ul class="d-flex">
                     <li>
                       <a href="javascript:void(0);" class="facebook-logo">
-                        <img src="@/assets/img/icons/facebook-logo.svg" alt="Facebook">
+                        <img src="/assets/img/icons/facebook-logo.svg" alt="Facebook">
                       </a>
                     </li>
                     <li>
                       <a href="javascript:void(0);">
-                        <img src="@/assets/img/icons/google.png" alt="Google">
+                        <img src="/assets/img/icons/google.png" alt="Google">
                       </a>
                     </li>
                     <li>
                       <a href="javascript:void(0);" class="apple-logo">
-                        <img src="@/assets/img/icons/apple-logo.svg" alt="Apple">
+                        <img src="/assets/img/icons/apple-logo.svg" alt="Apple">
                       </a>
                     </li>
 
@@ -90,7 +89,7 @@
             </form>
           </div>
           <div class="login-img">
-            <img src="@/assets/img/authentication/login02.png" alt="img" style="object-fit: cover;">
+            <img src="/assets/img/authentication/login02.png" alt="img" style="object-fit: cover;">
           </div>
         </div>
       </div>
@@ -110,23 +109,28 @@
 </template>
 
 <script setup>
-import api from '@/services/api';
 import { ref } from 'vue';
+import { useRouter } from 'vue-router';
+import { useAuthStore } from '@/stores/auth';
+import Loader from '@/components/Loader.vue';
 
+const authStore = useAuthStore()
+const router = useRouter()
 const messageFailed = ref('');
 const messageSuccess = ref('');
+const authData = ref({
+  username: '',
+  password: ''
+})
 
 const submitForm = async (event) => {
-  
-  try {
-    const formData = new FormData(event.target);
-    const response = await api.post('/auth/login', formData);
-    console.log('login:', response.data);
-    messageSuccess.value = 'Login successful!';
-  } catch (error) {
-    messageFailed.value = 'Login failed. Please check your credentials and try again.';
-    console.error('Error fetching login:', error);
+  await authStore.doLogin(authData.value.username, authData.value.password)
+  if(authStore.isAuthenticated)
+  {
+    router.push('/page/dashboard')
+    return
   }
+  messageFailed.value = 'Login failed. Please check your credentials and try again.';
 }
 </script>
 

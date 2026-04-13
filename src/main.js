@@ -2,37 +2,14 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
 import api from '@/services/api'
-
-// CSS
-import '@/assets/css/bootstrap.min.css'
-import '@/assets/css/animate.css'
-import '@/assets/plugins/select2/css/select2.min.css'
-import '@/assets/css/bootstrap-datetimepicker.min.css'
-import '@/assets/css/dataTables.bootstrap5.min.css'
-import '@/assets/plugins/fontawesome/css/fontawesome.min.css'
-import '@/assets/plugins/fontawesome/css/all.min.css'
-import '@/assets/css/style.css'
-
-// JS
-import '@/assets/js/jquery-3.7.1.min.js'
-import '@/assets/js/feather.min.js'
-import '@/assets/js/jquery.slimscroll.min.js'
-import '@/assets/js/jquery.dataTables.min.js'
-import '@/assets/js/dataTables.bootstrap5.min.js'
-import '@/assets/js/bootstrap.bundle.min.js'
-import '@/assets/plugins/select2/js/select2.min.js'
-// import '@/assets/js/moment.min.js'
-// import '@/assets/js/bootstrap-datetimepicker.min.js'
-import '@/assets/plugins/apexchart/apexcharts.min.js'
-import '@/assets/plugins/apexchart/chart-data.js'
-import '@/assets/plugins/sweetalert/sweetalert2.all.min.js'
-import '@/assets/plugins/sweetalert/sweetalerts.min.js'
-import '@/assets/js/theme-script.js'
-import '@/assets/js/script.js'
+// main.js / main.ts
+import { createPinia } from 'pinia'
+import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 
 /********* Layout component**********/
 import Header from '@/views/layouts/pos-header.vue'
 import Sidebar from '@/views/layouts/pos-sidebar.vue'
+import { useAuthStore } from './stores/auth'
 
 const app = createApp(App)
 
@@ -40,26 +17,25 @@ const app = createApp(App)
 app.component('layout-header', Header)
 app.component('layout-sidebar', Sidebar)
 
-const auth = {
-    username: import.meta.env.VITE_AUTH_USERNAME,
-    password: import.meta.env.VITE_AUTH_PASS,
-}
+const pinia = createPinia()
+pinia.use(piniaPluginPersistedstate)
 
-router.beforeEach(async (to, from, next) => {
-  const isAuthenticated = localStorage.getItem('bukutulis_app_token')
-  if(!isAuthenticated)
-  {
-    const {data} = await api.post('/oauth/token', {}, {auth})
-    const token = data.data.token
-    localStorage.setItem('bukutulis_app_token', token)
+app.use(pinia)
+
+const auth = useAuthStore()
+
+await auth.initAuth()
+
+router.beforeEach(async (to, from) => {
+  if (to.meta.requiresAuth && !auth.isAuthenticated) {
+    return '/sign-in'
+    // next('/sign-in')
+  } else if (to.path == '/'){
+    return '/page/dashboard'
+    // next('/page/dashboard')
+  } else {
+    // next()
   }
-  next()
-
-//   if (to.meta.requiresAuth && !isAuthenticated) {
-//     next('/login')
-//   } else {
-//     next()
-//   }
 })
 
 app.use(router).mount('#app')

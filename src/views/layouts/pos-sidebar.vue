@@ -6,8 +6,12 @@
       <div class="sidebar-inner slimscroll">
         <div id="sidebar-menu" class="sidebar-menu">
           <ul>
-            <li :class="{ active: activeMenu === 'dashboard' }"><router-link to="/dashboard"><i
-                  data-feather="grid"></i><span>Dashboard</span></router-link></li>
+            <li :class="{ active: activeMenu === '/page/dashboard' }">
+              <router-link to="/page/dashboard">
+                <i data-feather="grid"></i>
+                <span>Dashboard</span>
+              </router-link>
+            </li>
             <li class="submenu-open">
               <h6 class="submenu-hdr">Masters</h6>
               <ul>
@@ -17,8 +21,9 @@
                 <li><a href=""><i data-feather="box"></i><span>Data Customer</span></a></li>
                 <li><a href=""><i data-feather="box"></i><span>Data Supplier</span></a></li>
                 <li><a href=""><i data-feather="box"></i><span>Data Karyawan</span></a></li>
-                <li :class="{ active: activeMenu === 'category' }"><router-link to="/category"><i
-                      data-feather="box"></i><span>Data Kategori</span></router-link></li>
+                <li :class="{ active: activeMenu === '/page/category' }">
+                  <router-link to="/page/category"><i data-feather="box"></i><span>Data Kategori</span></router-link>
+                </li>
                 <li><a href=""><i data-feather="box"></i><span>Data Jenis Satuan</span></a></li>
                 <li><a href=""><i data-feather="box"></i><span>Data Rak</span></a></li>
                 <li><a href=""><i data-feather="box"></i><span>Data Produk</span></a></li>
