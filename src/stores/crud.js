@@ -21,6 +21,7 @@ export const useCrudStore = defineStore('crud', {
         const res = await api.get(endpoint, { params })
         this.items = res.data.data ?? res.data
       } catch (err) {
+        this.items = []
         this.error = err.response?.data || err.message
       } finally {
         this.loading = false

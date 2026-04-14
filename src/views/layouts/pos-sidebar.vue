@@ -17,7 +17,9 @@
               <ul>
                 <li><a href=""><i data-feather="box"></i><span>Data Config (Perusahaan)</span></a></li>
                 <li><a href=""><i data-feather="box"></i><span>Data Cabang / Outlet</span></a></li>
-                <li><a href=""><i data-feather="box"></i><span>Data Jenis Customer</span></a></li>
+                <li :class="{ active: activeMenu === '/page/jeniscust' }">
+                  <router-link to="/page/jeniscust"><i data-feather="box"></i><span>Data Jenis Customer</span></router-link>
+                </li>
                 <li><a href=""><i data-feather="box"></i><span>Data Customer</span></a></li>
                 <li><a href=""><i data-feather="box"></i><span>Data Supplier</span></a></li>
                 <li><a href=""><i data-feather="box"></i><span>Data Karyawan</span></a></li>
@@ -27,10 +29,18 @@
                 <li><a href=""><i data-feather="box"></i><span>Data Jenis Satuan</span></a></li>
                 <li><a href=""><i data-feather="box"></i><span>Data Rak</span></a></li>
                 <li><a href=""><i data-feather="box"></i><span>Data Produk</span></a></li>
-                <li><a href=""><i data-feather="box"></i><span>Data Satuan Produk</span></a></li>
-                <li><a href=""><i data-feather="box"></i><span>Data Bank</span></a></li>
-                <li><a href=""><i data-feather="box"></i><span>Data Biaya</span></a></li>
-                <li><a href=""><i data-feather="box"></i><span>Data Cara Bayar</span></a></li>
+                <li :class="{ active: activeMenu === '/page/satuan' }">
+                  <router-link to="/page/satuan"><i data-feather="box"></i><span>Data Satuan</span></router-link>
+                </li>
+                <li :class="{ active: activeMenu === '/page/bank' }">
+                  <router-link to="/page/bank"><i data-feather="box"></i><span>Data Bank</span></router-link>
+                </li>
+                <li :class="{ active: activeMenu === '/page/biaya' }">
+                  <router-link to="/page/biaya"><i data-feather="box"></i><span>Data Biaya</span></router-link>
+                </li>
+                <li :class="{ active: activeMenu === '/page/carabayar' }">
+                  <router-link to="/page/carabayar"><i data-feather="box"></i><span>Data Cara Bayar</span></router-link>
+                </li>
                 <li><a href=""><i data-feather="box"></i><span>Data Data Lokasi</span></a></li>
               </ul>
             </li>

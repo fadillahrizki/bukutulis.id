@@ -57,7 +57,6 @@ watch(
 watch(
     () => crudStore.openCreateModal,
     (newVal, oldVal) => {
-        console.log(newVal)
         if(newVal)
         {
             currentPage.config.add.fields.forEach(f => {
