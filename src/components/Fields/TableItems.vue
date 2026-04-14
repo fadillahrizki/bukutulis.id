@@ -1,6 +1,6 @@
 <script setup>
 import { computed } from "vue"
-import inputComponents from "../../libraries/input-components"
+import inputComponents from "@/libs/input-components.js"
 
 const props = defineProps({
   modelValue: {
