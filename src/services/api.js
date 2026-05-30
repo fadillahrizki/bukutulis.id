@@ -27,6 +27,15 @@ api.interceptors.response.use(
       err.config.headers.Authorization = `Bearer ${auth.token}`
       return axios(err.config)
     }
+    else
+    {
+      Swal.fire({
+          type: "error",
+          title: "Error!",
+          text: "Error status "+ err.response?.status,
+          confirmButtonClass: "btn btn-success",
+      });
+    }
 
     return Promise.reject(err)
   }

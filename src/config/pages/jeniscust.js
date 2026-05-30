@@ -15,7 +15,7 @@ export default {
         endpoint: '/jeniscust',
         id_field: 'id_jenis_cust',
         list: {
-            title: 'List jenis_cust',
+            title: 'List Jenis Customer',
             columns: [
                 {
                     key: 'id_jenis_cust',

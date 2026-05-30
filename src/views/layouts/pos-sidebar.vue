@@ -16,18 +16,34 @@
               <h6 class="submenu-hdr">Masters</h6>
               <ul>
                 <li><a href=""><i data-feather="box"></i><span>Data Config (Perusahaan)</span></a></li>
-                <li><a href=""><i data-feather="box"></i><span>Data Cabang / Outlet</span></a></li>
+                <li :class="{ active: activeMenu === '/page/cabang' }">
+                  <router-link to="/page/cabang">
+                    <i data-feather="box"></i><span>Data Cabang / Outlet</span>
+                  </router-link>
+                </li>
                 <li :class="{ active: activeMenu === '/page/jeniscust' }">
                   <router-link to="/page/jeniscust"><i data-feather="box"></i><span>Data Jenis Customer</span></router-link>
                 </li>
                 <li><a href=""><i data-feather="box"></i><span>Data Customer</span></a></li>
-                <li><a href=""><i data-feather="box"></i><span>Data Supplier</span></a></li>
-                <li><a href=""><i data-feather="box"></i><span>Data Karyawan</span></a></li>
+                <li :class="{ active: activeMenu === '/page/supplier' }">
+                  <router-link to="/page/supplier">
+                    <i data-feather="box"></i><span>Data Supplier</span>
+                  </router-link>
+                </li>
+                <li :class="{ active: activeMenu === '/page/karyawan' }">
+                  <router-link to="/page/karyawan">
+                    <i data-feather="box"></i><span>Data Karyawan</span>
+                  </router-link>
+                </li>
                 <li :class="{ active: activeMenu === '/page/category' }">
                   <router-link to="/page/category"><i data-feather="box"></i><span>Data Kategori</span></router-link>
                 </li>
                 <li><a href=""><i data-feather="box"></i><span>Data Jenis Satuan</span></a></li>
-                <li><a href=""><i data-feather="box"></i><span>Data Rak</span></a></li>
+                <li :class="{ active: activeMenu === '/page/rak' }">
+                  <router-link to="/page/rak">
+                    <i data-feather="box"></i><span>Data Rak</span>
+                  </router-link>
+                </li>
                 <li><a href=""><i data-feather="box"></i><span>Data Produk</span></a></li>
                 <li :class="{ active: activeMenu === '/page/satuan' }">
                   <router-link to="/page/satuan"><i data-feather="box"></i><span>Data Satuan</span></router-link>
@@ -74,9 +90,17 @@
               <h6 class="submenu-hdr">Operator</h6>
               <ul>
                 <li><a href=""><i data-feather="box"></i><span>Data Menu</span></a></li>
-                <li><a href=""><i data-feather="box"></i><span>Data Group User (Role)</span></a></li>
+                <li :class="{ active: activeMenu === '/page/grupuser' }">
+                  <router-link to="/page/grupuser">
+                    <i data-feather="box"></i><span>Data Group User (Role)</span>
+                  </router-link>
+                </li>
                 <li><a href=""><i data-feather="box"></i><span>Data User</span></a></li>
-                <li><a href=""><i data-feather="box"></i><span>Data Akses</span></a></li>
+                <li :class="{ active: activeMenu === '/page/akses' }">
+                  <router-link to="/page/akses">
+                    <i data-feather="box"></i><span>Data Akses</span>
+                  </router-link>
+                </li>
               </ul>
             </li>
             <li class="submenu-open">

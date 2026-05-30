@@ -14,7 +14,7 @@ export default {
         endpoint: '/kodesatuan',
         id_field: 'kode_satuan',
         list: {
-            title: 'List satuan',
+            title: 'List Satuan',
             columns: [
                 {
                     key: 'kode_satuan',

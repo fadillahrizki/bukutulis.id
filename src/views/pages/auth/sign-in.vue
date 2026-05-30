@@ -127,7 +127,7 @@ const submitForm = async (event) => {
   await authStore.doLogin(authData.value.username, authData.value.password)
   if(authStore.isAuthenticated)
   {
-    router.push('/page/dashboard')
+    location.href = '/page/dashboard'
     return
   }
   messageFailed.value = 'Login failed. Please check your credentials and try again.';

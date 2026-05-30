@@ -18,7 +18,7 @@ export default {
         endpoint: '/carabayar',
         id_field: 'id_carabayar',
         list: {
-            title: 'List satuan',
+            title: 'List Cara Bayar',
             columns: [
                 {
                     key: 'id_carabayar',

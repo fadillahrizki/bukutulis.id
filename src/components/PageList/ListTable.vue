@@ -12,7 +12,7 @@ const currentPage = pageStore.getCurrentPage()
 
 async function init(){
 
-    $('.datalist').DataTable({
+    window.listDataTable = $('.datalist').DataTable({
         bFilter: true,
         sDom: 'fBtlpi',
         ordering: true,

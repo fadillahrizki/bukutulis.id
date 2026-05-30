@@ -24,6 +24,9 @@ const submitCreateForm = async () => {
             text: "Data berhasil disimpan.",
             confirmButtonClass: "btn btn-success",
         });
+
+        window.listDataTable.draw()
+        createForm.value = {}
     } catch (err) {
         console.error('Failed', err)
     }
@@ -42,6 +45,7 @@ const submitEditForm = async () => {
             text: "Data berhasil diperbaharui.",
             confirmButtonClass: "btn btn-success",
         });
+        editForm.value = {}
     } catch (err) {
         console.error('Failed', err)
     }
